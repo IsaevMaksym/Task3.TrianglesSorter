@@ -21,7 +21,7 @@ namespace BL
         {
             bool isSidesOK = false;
 
-            if ((sides.Length != 3) || (sides[0] == 0) || (sides[1] == 0) || (sides[2] == 0))
+            if ((sides.Length != 3) || (sides[0] == 0) || (sides[1]== 0) || (sides[2] == 0))
             {
                 return isSidesOK;
             }
@@ -40,7 +40,7 @@ namespace BL
             }
         }
 
-        private bool IsTriangleExist(double[] sides)         //All sides are different
+        private bool IsTriangleExist(double[] sides)         
         {
             bool isOk = false;
 
@@ -75,7 +75,7 @@ namespace BL
             return isOk;
         }
 
-        private bool IsTriangleEquilateral(double[] sides)       //All sides are equals
+        private bool IsTriangleEquilateral(double[] sides)
         {
             return ((sides[0] == sides[1]) && (sides[0] == sides[2]));
         }

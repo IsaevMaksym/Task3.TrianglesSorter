@@ -13,6 +13,7 @@ namespace TrianglesSorter
     {
         static void Main(string[] args)
         {
+                       
             IImputOutput IO = new ConsOperations();
             TriangleController sorter = new TriangleController(IO);
             sorter.Start(args);

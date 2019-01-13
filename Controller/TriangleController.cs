@@ -18,8 +18,10 @@ namespace Controller
         #endregion
 
         #region Private Fields
+
         private TrianglesList triangles = new TrianglesList();
         private IImputOutput _io;
+        private ArgsValidator _validator = new ArgsValidator();
         #endregion
 
         public TriangleController(IImputOutput imputOutput)
@@ -51,23 +53,23 @@ namespace Controller
         private void CheckInsertedArgs(string[] args)
         {
 
-            double[] _dbArr = new double[args.Length];
             if (args.Length == 0)
             {
                 _io.ShowRules(RULES);
             }
-            else if (args.Length >= 1)
+            else
             {
-                _dbArr = ArgsValidator.CheckInsertedString(args);
+                triangles = _validator.CheckInsertedString(args);
 
-                if (_dbArr.Length < 4)
+                if (triangles.IsEmpty)
                 {
                     _io.ShowRules(RULES);
                 }
                 else
                 {
-                    //CompareInsertedArgs();
+                    _io.ShowTrianglesList(triangles.GetTrinaglesList());
                 }
+               
             }
         }
 
@@ -83,10 +85,9 @@ namespace Controller
                 {
                     _io.ShowErrorMsg("Can't create triangle");
                 }
-                
+
             }
         }
-
 
     }
 }

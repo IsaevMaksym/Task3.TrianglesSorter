@@ -16,27 +16,28 @@ namespace BL
 
         #region Private Fields
 
-        private List<Triangle> triangles = new List<Triangle>();
-        private TriangleCreator creator = new TriangleCreator();
+        private List<Triangle> _triangles = new List<Triangle>();
+        private TriangleCreator _creator = new TriangleCreator();
 
         #endregion
 
+        
         public bool IsEmpty
         {
             get
             {
-                return triangles.Count == 0;
+                return _triangles.Count == 0;
             }
         }
 
-        public List<Triangle> Triangles { get => triangles; private set => triangles = value; }
+        public List<Triangle> Triangles { get => _triangles; private set => _triangles = value; }
 
-        public bool AddTriangle(string name, double[] sides)
+        public bool AddTriangle(string name, params double[] sides)
         {
             bool isAdded = false;
-            if (creator.CheckSides(sides))
+            if (_creator.CheckSides(sides))
             {
-                triangles.Add(creator.GetNewTriangle(name, sides));
+                _triangles.Add(_creator.GetNewTriangle(name, sides));
                 isAdded = true;
             }
 
@@ -45,14 +46,14 @@ namespace BL
 
         private void ReverseSortTriangles()
         {
-            triangles.Sort();
-            triangles.Reverse();
+            _triangles.Sort();
+            _triangles.Reverse();
         }
 
         public void ShowTriangles()
         {
 
-            foreach (var item in triangles)
+            foreach (var item in _triangles)
             {
                 Console.WriteLine(item.ToString());
             }
@@ -60,10 +61,12 @@ namespace BL
 
         public string[] GetTrinaglesList()
         {
-            int i = -1;
-            string[] arr = new string[triangles.Count];
+            this.ReverseSortTriangles();
 
-            foreach (var item in triangles)
+            int i = -1;
+            string[] arr = new string[_triangles.Count];
+
+            foreach (var item in _triangles)
             {
                 ++i;
                 arr[i] = item.ToString();
