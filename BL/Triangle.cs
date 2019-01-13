@@ -11,7 +11,7 @@ namespace BL
     {
         #region CONST
 
-        public const string STRING_FORMAT_MESSAGE = "[Triangle {0}]: {1}cm. ";
+        public const string STRING_FORMAT_MESSAGE = "[Triangle {0}]: {1}cm2. ";
         #endregion
 
         #region Private vearible

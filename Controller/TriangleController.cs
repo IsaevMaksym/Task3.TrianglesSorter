@@ -33,14 +33,17 @@ namespace Controller
 
             InsertNewTriangle();
 
-            _io.ShowTrianglesList();
-
-            while (_io.ISStartOver())
+            if (!triangles.IsEmpty)
             {
-                InsertNewTriangle();
+                _io.ShowTrianglesList(triangles.GetTrinaglesList());
 
-                _io.ShowTrianglesList();
-            }
+                while (_io.ISStartOver())
+                {
+                    InsertNewTriangle();
+
+                    _io.ShowTrianglesList(triangles.GetTrinaglesList());
+                }
+            }            
 
             _io.CloseApp();
         }
@@ -63,7 +66,7 @@ namespace Controller
                 }
                 else
                 {
-                    CompareInsertedArgs();
+                    //CompareInsertedArgs();
                 }
             }
         }
@@ -76,6 +79,7 @@ namespace Controller
             }
         }
 
+        
     }
 }
 

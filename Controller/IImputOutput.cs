@@ -16,7 +16,7 @@ namespace Controller
 
         double[] GetTriangleSides();
 
-        void ShowTrianglesList(string s);
+        void ShowTrianglesList(string[] s);
 
         string GetTriangleName();
 

@@ -17,9 +17,11 @@ namespace ConsoleIO
         public const string CLOSING_MESSAGE = "Closing app";
         public const string USER_ANSWER_Y = "y";
         public const string USER_ANSWER_YES = "yes";
-        public const string ENTER_SIDE = "Enter triangle side: ";
+        public const string ENTER_SIDE = "Enter triangle side length(e.g. 1,23): ";
         public const string GET_TRIANGLE_NAME = "Enter triangle name: ";
-        public const string START_AGAIN = "Would you like to start again?  ";
+        public const string START_AGAIN = "Would you like to start again?(y/yes)  ";
+        public const string TRIANGLES_ARR = "============= Triangles list: ===============";
+
         #endregion
 
         public void ShowRules(string rules)
@@ -63,7 +65,7 @@ namespace ConsoleIO
 
             for (int i = 0; i < sides.Length; i++)
             {
-                sides[i]=GetUserSide();
+                sides[i] = GetUserSide();
             }
 
             return sides;
@@ -82,11 +84,24 @@ namespace ConsoleIO
             return value;
         }
 
-        public void ShowTrianglesList(string s)
+        public void ShowTrianglesList(string[] trianglesArr)
         {
-            Console.WriteLine(s);
-            Console.WriteLine(PRESS_ANY_KEY);
-            Console.ReadKey();
+
+            if (trianglesArr.Length > 0)
+            {
+
+                Console.Clear();
+                Console.WriteLine(TRIANGLES_ARR);
+
+                for (int i = 0; i < trianglesArr.Length; i++)
+                {
+                    Console.WriteLine(trianglesArr[i]);
+                }
+
+                Console.WriteLine(PRESS_ANY_KEY);
+                Console.ReadKey();
+            }
+
         }
 
         public string GetTriangleName()
@@ -95,15 +110,15 @@ namespace ConsoleIO
             string s;
             do
             {
-                s= Console.ReadLine().Trim();
-            } while ((!String.IsNullOrWhiteSpace(s))||(!String.IsNullOrEmpty(s)));
+                s = Console.ReadLine().Trim();
+            } while (String.IsNullOrWhiteSpace(s));
 
             return s;
         }
 
         public bool ISStartOver()
         {
-            
+
             bool isAnswerYes = false;
 
             Console.Write(START_AGAIN);
