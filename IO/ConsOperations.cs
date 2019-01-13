@@ -17,7 +17,7 @@ namespace ConsoleIO
         public const string CLOSING_MESSAGE = "Closing app";
         public const string USER_ANSWER_Y = "y";
         public const string USER_ANSWER_YES = "yes";
-        public const string ENTER_SIDE = "Enter triangle side length(e.g. 1,23): ";
+        public const string ENTER_SIDE = "Enter triangle {0} side length(e.g. 1,23): ";
         public const string GET_TRIANGLE_NAME = "Enter triangle name: ";
         public const string START_AGAIN = "Would you like to start again?(y/yes)  ";
         public const string TRIANGLES_ARR = "============= Triangles list: ===============";
@@ -65,20 +65,20 @@ namespace ConsoleIO
 
             for (int i = 0; i < sides.Length; i++)
             {
-                sides[i] = GetUserSide();
+                sides[i] = GetUserSide(i);
             }
 
             return sides;
         }
 
-        private double GetUserSide()
+        private double GetUserSide(int sideCount)
         {
             double value = 0.0;
 
             do
             {
                 Console.Clear();
-                Console.Write(ENTER_SIDE);
+                Console.Write(ENTER_SIDE, sideCount+1);
             } while (!double.TryParse(Console.ReadLine(), out value));
 
             return value;
@@ -131,6 +131,11 @@ namespace ConsoleIO
             }
             return isAnswerYes;
 
+        }
+
+        public void ShowErrorMsg(string s)
+        {
+            Console.WriteLine(s);
         }
     }
 }

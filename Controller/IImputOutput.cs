@@ -21,5 +21,7 @@ namespace Controller
         string GetTriangleName();
 
         bool ISStartOver();
+
+        void ShowErrorMsg(string error);
     }
 }

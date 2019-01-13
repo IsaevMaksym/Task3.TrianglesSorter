@@ -31,9 +31,16 @@ namespace BL
 
         public List<Triangle> Triangles { get => triangles; private set => triangles = value; }
 
-        public void AddTriangle(string name, double[] sides)
+        public bool AddTriangle(string name, double[] sides)
         {
-            triangles.Add(creator.GetNewTriangle(name, sides));
+            bool isAdded = false;
+            if (creator.CheckSides(sides))
+            {
+                triangles.Add(creator.GetNewTriangle(name, sides));
+                isAdded = true;
+            }
+
+            return isAdded;            
         }
 
         private void ReverseSortTriangles()

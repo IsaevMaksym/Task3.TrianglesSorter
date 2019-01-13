@@ -43,7 +43,7 @@ namespace Controller
 
                     _io.ShowTrianglesList(triangles.GetTrinaglesList());
                 }
-            }            
+            }
 
             _io.CloseApp();
         }
@@ -52,7 +52,7 @@ namespace Controller
         {
 
             double[] _dbArr = new double[args.Length];
-            if (args.Length <= 0)
+            if (args.Length == 0)
             {
                 _io.ShowRules(RULES);
             }
@@ -75,11 +75,19 @@ namespace Controller
         {
             while (_io.DoesUserWantInputeTriangle())
             {
-                triangles.AddTriangle(_io.GetTriangleName(), _io.GetTriangleSides());
+                if (triangles.AddTriangle(_io.GetTriangleName(), _io.GetTriangleSides()))
+                {
+                    continue;
+                }
+                else
+                {
+                    _io.ShowErrorMsg("Can't create triangle");
+                }
+                
             }
         }
 
-        
+
     }
 }
 

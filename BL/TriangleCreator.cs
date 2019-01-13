@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+ 
+
 
 namespace BL
 {
@@ -11,22 +13,15 @@ namespace BL
 
         public Triangle GetNewTriangle(string name, double[] sides)
         {
-            if (!CheckSides(sides))
-            {
-                throw new TrianglesExeption();
-            }
-            else
-            {
-                return new Triangle(name, sides);
-            }
-            
+            return new Triangle(name, sides);
+
         }
 
         public bool CheckSides(params double[] sides)
         {
             bool isSidesOK = false;
 
-            if ((sides.Length!=3)||(sides[0]==0)|| (sides[1] == 0)|| (sides[2] == 0))
+            if ((sides.Length != 3) || (sides[0] == 0) || (sides[1] == 0) || (sides[2] == 0))
             {
                 return isSidesOK;
             }
@@ -36,41 +31,48 @@ namespace BL
                 {
                     isSidesOK = true;
                 }
-                else if (IsTriangleIsosceles(sides))
-                {
-                    isSidesOK = true;
-                }
-                else if (IsTriangleVersatile(sides))
+                
+                else if (IsTriangleExist(sides))
                 {
                     isSidesOK = true;
                 }
                 return isSidesOK;
             }
-
         }
 
-        private bool IsTriangleVersatile(double[] sides)         //All sides are different
+        private bool IsTriangleExist(double[] sides)         //All sides are different
         {
-            return ((sides[0] + sides[1] > sides[2]) || (sides[0] + sides[2] > sides[1]) || (sides[2] + sides[1] > sides[0]));
+            bool isOk = false;
+
+            if (IsSidesGood(sides[0], sides[1], sides[2]))
+            {
+                isOk = true;
+            }
+            else if (IsSidesGood(sides[1], sides[2], sides[0]))
+            {
+                isOk = true;
+            }
+            else if (IsSidesGood(sides[2], sides[0], sides[1]))
+            {
+                isOk = true;
+            }
+            
+            return isOk;
         }
 
-        private bool IsTriangleIsosceles(double[] sides)         //2 sides are equal.
+        private bool IsSidesGood(params double[] sides)
         {
-            bool isOK = false;
+            bool isOk = false;
 
-            if ((sides[0] == sides[1]) && (sides[0] + sides[1] < sides[2]))
+            if ((sides[0] < sides[2] && sides[1] < sides[2]) && (sides[0] + sides[1] > sides[2]))
             {
-                isOK = true;
+                isOk = true;
             }
-            else if ((sides[0] == sides[2]) && (sides[0] + sides[2] < sides[1]))
+            else if ((sides[0] == sides[1]) && (sides[0] + sides[1] > sides[2]))
             {
-                isOK = true;
+                isOk = true;
             }
-            else if ((sides[2] == sides[1]) && (sides[2] + sides[1] < sides[0]))
-            {
-                isOK = true;
-            }
-            return isOK;
+            return isOk;
         }
 
         private bool IsTriangleEquilateral(double[] sides)       //All sides are equals
