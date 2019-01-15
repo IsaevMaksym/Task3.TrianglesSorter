@@ -13,15 +13,13 @@ namespace Controller
         bool DoesUserWantInputeTriangle();
 
         void CloseApp();
-
-        double[] GetTriangleSides();
-
+                
         void ShowTrianglesList(string[] s);
 
-        string GetTriangleName();
+        string GetNewTriangleString();
 
         bool ISStartOver();
 
-        void ShowErrorMsg(string error);
+        void ShowMsg(string error);
     }
 }

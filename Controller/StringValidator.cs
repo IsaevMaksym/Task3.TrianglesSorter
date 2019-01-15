@@ -8,24 +8,35 @@ using BL;
 
 namespace Controller
 {
-    class ArgsValidator
+    class StringValidator
     {
         const string SEARCH_PATTERN = @"(\w+)\,(\d+\.?\d*)\,(\d+\.?\d*)\,(\d+\.?\d*)";         // it means [\w- any alp.-digit], [\. screening], [+ prev. is 1+ times], [\d any digit]
 
 
-        public TrianglesList CheckInsertedString(string[] args)
+        public TrianglesList CheckInsertedString(params string[] args)
         {
-            TrianglesList trianglesList = null;
+            string s = "";
+
+            if (args.Length > 1)
+            {
+                for (int i = 0; i < args.Length; i++)
+                {
+                    s += args[i];
+                }
+            }
+            else
+            {
+                s = args[0];
+            }
+
+            return GetTrianglesList(GetTriangleFormatedArr(s));
+        }
+        
+        private string[] GetTriangleFormatedArr(string s)
+        {
             Regex regex = new Regex(SEARCH_PATTERN, RegexOptions.IgnoreCase);
             MatchCollection matches = null;
-            string s = "";
             string[] arr = null;
-
-
-            for (int i = 0; i < args.Length; i++)
-            {
-                s += args[i];
-            }
 
             matches = regex.Matches(s);
 
@@ -37,11 +48,9 @@ namespace Controller
                 {
                     arr[i] = matches[i].Value;
                 }
-
-                trianglesList = GetTrianglesList(arr);
             }
 
-            return trianglesList;
+            return arr;
         }
 
         private TrianglesList GetTrianglesList(string[] arr)
@@ -52,7 +61,7 @@ namespace Controller
             {
                 string[] name = arr[i].Split(',');
 
-                trianglesList.AddTriangle(name[0], GetDbl(name[1]), GetDbl(name[2]), GetDbl(name[3]));
+                trianglesList.CheckTriangleString(name[0], GetDbl(name[1]), GetDbl(name[2]), GetDbl(name[3]));
             }
 
             return trianglesList;

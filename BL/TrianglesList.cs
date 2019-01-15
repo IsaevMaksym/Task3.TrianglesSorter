@@ -17,7 +17,7 @@ namespace BL
         #region Private Fields
 
         private List<Triangle> _triangles = new List<Triangle>();
-        private TriangleCreator _creator = new TriangleCreator();
+        private TriangleValidator _creator = new TriangleValidator();
 
         #endregion
 
@@ -32,16 +32,28 @@ namespace BL
 
         public List<Triangle> Triangles { get => _triangles; private set => _triangles = value; }
 
-        public bool AddTriangle(string name, params double[] sides)
+        public bool CheckTriangleString(string name, params double[] sides)
         {
             bool isAdded = false;
-            if (_creator.CheckSides(sides))
+            if (_creator.IsTriangleExist(sides))
             {
-                _triangles.Add(_creator.GetNewTriangle(name, sides));
+                _triangles.Add(new Triangle(name, sides));
                 isAdded = true;
             }
 
             return isAdded;            
+        }
+
+        public bool AddTriangles(Triangle triangle)
+        {
+            bool isAdded = false;
+            if (_creator.IsTriangleExist(triangle.GetSides))
+            {
+                _triangles.Add(triangle);
+                isAdded = true;
+            }
+
+            return isAdded;
         }
 
         private void ReverseSortTriangles()
@@ -75,5 +87,6 @@ namespace BL
             return arr;
         }
 
+        
     }
 }

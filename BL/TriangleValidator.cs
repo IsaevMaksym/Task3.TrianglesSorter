@@ -3,25 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
- 
+
 
 
 namespace BL
 {
-    class TriangleCreator
+    class TriangleValidator
     {
 
-        public Triangle GetNewTriangle(string name, double[] sides)
-        {
-            return new Triangle(name, sides);
-
-        }
-
-        public bool CheckSides(params double[] sides)
+        public bool IsTriangleExist(params double[] sides)
         {
             bool isSidesOK = false;
 
-            if ((sides.Length != 3) || (sides[0] == 0) || (sides[1]== 0) || (sides[2] == 0))
+            if ((sides.Length != 3) || (sides[0] == 0) || (sides[1] == 0) || (sides[2] == 0))
             {
                 return isSidesOK;
             }
@@ -31,8 +25,8 @@ namespace BL
                 {
                     isSidesOK = true;
                 }
-                
-                else if (IsTriangleExist(sides))
+
+                else if (IsTriangleМersatile(sides))
                 {
                     isSidesOK = true;
                 }
@@ -40,27 +34,27 @@ namespace BL
             }
         }
 
-        private bool IsTriangleExist(double[] sides)         
+        private bool IsTriangleМersatile(double[] sides)
         {
             bool isOk = false;
 
-            if (IsSidesGood(sides[0], sides[1], sides[2]))
+            if (IsSidesExist(sides[0], sides[1], sides[2]))
             {
                 isOk = true;
             }
-            else if (IsSidesGood(sides[1], sides[2], sides[0]))
+            else if (IsSidesExist(sides[1], sides[2], sides[0]))
             {
                 isOk = true;
             }
-            else if (IsSidesGood(sides[2], sides[0], sides[1]))
+            else if (IsSidesExist(sides[2], sides[0], sides[1]))
             {
                 isOk = true;
             }
-            
+
             return isOk;
         }
 
-        private bool IsSidesGood(params double[] sides)
+        private bool IsSidesExist(params double[] sides)
         {
             bool isOk = false;
 

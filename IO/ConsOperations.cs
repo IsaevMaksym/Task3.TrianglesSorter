@@ -18,7 +18,7 @@ namespace ConsoleIO
         public const string USER_ANSWER_Y = "y";
         public const string USER_ANSWER_YES = "yes";
         public const string ENTER_SIDE = "Enter triangle {0} side length(e.g. 1,23): ";
-        public const string GET_TRIANGLE_NAME = "Enter triangle name: ";
+        public const string GET_TRIANGLE_STRING = "Enter triangle in format[<triangle_name>,<triangle_side>,<triangle_side>,<triangle_side>]: ";
         public const string START_AGAIN = "Would you like to start again?(y/yes)  ";
         public const string TRIANGLES_ARR = "============= Triangles list: ===============";
 
@@ -59,30 +59,30 @@ namespace ConsoleIO
 
         }
 
-        public double[] GetTriangleSides()
-        {
-            double[] sides = new double[3];
+        //public double[] GetTriangleSides()
+        //{
+        //    double[] sides = new double[3];
 
-            for (int i = 0; i < sides.Length; i++)
-            {
-                sides[i] = GetUserSide(i);
-            }
+        //    for (int i = 0; i < sides.Length; i++)
+        //    {
+        //        sides[i] = GetUserSide(i);
+        //    }
 
-            return sides;
-        }
+        //    return sides;
+        //}
 
-        private double GetUserSide(int sideCount)
-        {
-            double value = 0.0;
+        //private double GetUserSide(int sideCount)
+        //{
+        //    double value = 0.0;
 
-            do
-            {
-                Console.Clear();
-                Console.Write(ENTER_SIDE, sideCount+1);
-            } while (!double.TryParse(Console.ReadLine(), out value));
+        //    do
+        //    {
+        //        Console.Clear();
+        //        Console.Write(ENTER_SIDE, sideCount+1);
+        //    } while (!double.TryParse(Console.ReadLine(), out value));
 
-            return value;
-        }
+        //    return value;
+        //}
 
         public void ShowTrianglesList(string[] trianglesArr)
         {
@@ -104,9 +104,9 @@ namespace ConsoleIO
 
         }
 
-        public string GetTriangleName()
+        public string GetNewTriangleString()
         {
-            Console.WriteLine(GET_TRIANGLE_NAME);
+            Console.WriteLine(GET_TRIANGLE_STRING);
             string s;
             do
             {
@@ -133,7 +133,7 @@ namespace ConsoleIO
 
         }
 
-        public void ShowErrorMsg(string s)
+        public void ShowMsg(string s)
         {
             Console.WriteLine(s);
         }

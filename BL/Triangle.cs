@@ -44,6 +44,14 @@ namespace BL
             }
         }
 
+        public double[] GetSides
+        {
+            get
+            {
+                return _triangleSides; 
+            }
+        }
+
         public string TriangleName { get => _triangleName; set => _triangleName = value; }
 
         public int CompareTo(object obj)
