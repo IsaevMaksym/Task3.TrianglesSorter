@@ -11,7 +11,7 @@ namespace TriangleLogic
     {
         #region Constants
 
-        public const string STRING_FORMAT_MESSAGE = "[Triangle {0,F3}: {1}cm2. ";
+        public const string STRING_FORMAT_MESSAGE = "[Triangle {0}: {1}cm2. ";
 
         #endregion
 

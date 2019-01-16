@@ -42,13 +42,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ConsOperations.cs" />
+    <Compile Include="IConsoleOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Controller\Controller.csproj">
-      <Project>{8ab9d2e4-6bd0-4b8d-894d-3de5af6e757f}</Project>
-      <Name>Controller</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
