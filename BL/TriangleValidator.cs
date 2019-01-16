@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 
 
-namespace BL
+namespace TriangleLogic
 {
     class TriangleValidator
     {
@@ -15,7 +15,7 @@ namespace BL
         {
             bool isSidesOK = false;
 
-            if ((sides.Length != 3) || (sides[0] == 0) || (sides[1] == 0) || (sides[2] == 0))
+            if ((sides.Length != 3) || (sides[0] <= 0) || (sides[1] <= 0) || (sides[2] <= 0))
             {
                 return isSidesOK;
             }
@@ -30,6 +30,7 @@ namespace BL
                 {
                     isSidesOK = true;
                 }
+
                 return isSidesOK;
             }
         }
@@ -66,6 +67,7 @@ namespace BL
             {
                 isOk = true;
             }
+
             return isOk;
         }
 

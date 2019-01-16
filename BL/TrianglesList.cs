@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace TriangleLogic
 {
     public class TrianglesList
     {
-        #region CONST
+        #region Constants
 
         public const string EXEPTION_MESSAGE = "Error! Triangle can't be empty";
-
-        #endregion
+        public const int SIDES_COUNT = 3;
+            
+            #endregion
 
         #region Private Fields
 
         private List<Triangle> _triangles = new List<Triangle>();
-        private TriangleValidator _creator = new TriangleValidator();
+        private TriangleValidator _validator = new TriangleValidator();
 
         #endregion
 
@@ -35,7 +36,12 @@ namespace BL
         public bool CheckTriangleString(string name, params double[] sides)
         {
             bool isAdded = false;
-            if (_creator.IsTriangleExist(sides))
+
+            if (sides.Length!= SIDES_COUNT)
+            {
+                return isAdded;
+            }
+            else if(_validator.IsTriangleExist(sides))
             {
                 _triangles.Add(new Triangle(name, sides));
                 isAdded = true;
@@ -47,7 +53,7 @@ namespace BL
         public bool AddTriangles(Triangle triangle)
         {
             bool isAdded = false;
-            if (_creator.IsTriangleExist(triangle.GetSides))
+            if (_validator.IsTriangleExist(triangle.SideOne, triangle.SideTwo, triangle.SideThree))
             {
                 _triangles.Add(triangle);
                 isAdded = true;

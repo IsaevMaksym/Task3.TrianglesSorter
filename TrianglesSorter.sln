@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrianglesSorter", "TrianglesSorter\TrianglesSorter.csproj", "{14020F2C-993D-44F6-9F88-2A21EE3CCEFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BL", "BL\BL.csproj", "{22DBFF80-E650-4168-B9FB-76A392CD6E8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TriangleLogic", "BL\TriangleLogic.csproj", "{22DBFF80-E650-4168-B9FB-76A392CD6E8F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Controller", "Controller\Controller.csproj", "{8AB9D2E4-6BD0-4B8D-894D-3DE5AF6E757F}"
 EndProject

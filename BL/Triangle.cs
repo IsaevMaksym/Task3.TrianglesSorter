@@ -5,33 +5,39 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
+namespace TriangleLogic
 {
-    public class Triangle : IComparable
+    public class Triangle : IComparable<Triangle>
     {
-        #region CONST
+        #region Constants
 
         public const string STRING_FORMAT_MESSAGE = "[Triangle {0}]: {1}cm2. ";
+
         #endregion
 
         #region Private vearible
+
         private string _triangleName;
-        private double[] _triangleSides;
+        private double _sideOne;
+        private double _sideTwo;
+        private double _sideThree;
+
         #endregion
 
 
         public Triangle(string name, params double[] sides)
         {
-            _triangleSides = new double[3];
+            _sideOne = sides[0];
+            _sideTwo = sides[1];
+            _sideThree = sides[2];
             _triangleName = name;
-            _triangleSides = sides;
         }
 
-        public double HalfOfPerimetr
+        public double Perimetr
         {
             get
             {
-                return 0.5 * (_triangleSides[0] + _triangleSides[1] + _triangleSides[2]);
+                return (_sideOne + _sideTwo + _sideThree);
             }
         }
 
@@ -39,26 +45,21 @@ namespace BL
         {
             get
             {
-                return Math.Round(Math.Sqrt(HalfOfPerimetr * ((HalfOfPerimetr - _triangleSides[0])
-                    * (HalfOfPerimetr - _triangleSides[1]) * (HalfOfPerimetr - _triangleSides[2]))), 3);
-            }
-        }
+                double PerimetrHalf = Perimetr / 2.0;
 
-        public double[] GetSides
-        {
-            get
-            {
-                return _triangleSides; 
+                return Math.Sqrt(PerimetrHalf * ((PerimetrHalf - _sideOne)
+                    * (PerimetrHalf - _sideTwo) * (PerimetrHalf - _sideThree)));
             }
         }
 
         public string TriangleName { get => _triangleName; set => _triangleName = value; }
+        public double SideOne { get => _sideOne; set => _sideOne = value; }
+        public double SideTwo { get => _sideTwo; set => _sideTwo = value; }
+        public double SideThree { get => _sideThree; set => _sideThree = value; }
 
-        public int CompareTo(object obj)
+        public int CompareTo(Triangle another)
         {
-            Triangle compared = obj as Triangle;
-
-            return this.Area.CompareTo(compared.Area);
+            return this.Area.CompareTo(another.Area);
         }
 
         public override string ToString()

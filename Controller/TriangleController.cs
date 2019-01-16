@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BL;
+using TriangleLogic;
 
 
 
@@ -13,22 +13,25 @@ namespace Controller
     {
 
         #region CONST
+
         public const string RULES = "Insert triangles information in format<TriangleName>,<TriangleSide>,<TriangleSide>,<TriangleSide>.";
         public const string CREATION_FAIL = "Can't create triangle";
         public const string CREATION_SUCCESSFUL = "Triangle has been added";
         public const string CONVERTATION_FAIL = "Fail to convert inserted arguments";
+
         #endregion
 
         #region Private Fields
 
         private TrianglesList _triangles = new TrianglesList();
-        private IImputOutput _io;
+        private IConsoleOperation _io;
         private StringValidator _validator = new StringValidator();
+
         #endregion
 
-        public TriangleController(IImputOutput imputOutput)
+        public TriangleController(IConsoleOperation inputOutput)
         {
-            _io = imputOutput;
+            _io = inputOutput;
         }
 
         public void Start(string[] args)
@@ -49,7 +52,7 @@ namespace Controller
                 }
             }
 
-            _io.CloseApp();
+            _io.ShowClosingMessage();
         }
 
         private void CheckInsertedArgs(string[] args)
@@ -65,7 +68,7 @@ namespace Controller
 
                 if (_triangles.IsEmpty)
                 {
-                    _io.ShowMsg(CONVERTATION_FAIL);
+                    _io.ShowMessage(CONVERTATION_FAIL);
                     _io.ShowRules(RULES);
                 }
                 else
@@ -87,13 +90,13 @@ namespace Controller
                 {
                     if (_triangles.AddTriangles(trianglesList.Triangles[i]))
                     {
-                        _io.ShowMsg(CREATION_SUCCESSFUL);
+                        _io.ShowMessage(CREATION_SUCCESSFUL);
                         continue;
                         
                     }
                     else
                     {
-                        _io.ShowMsg(CREATION_FAIL);
+                        _io.ShowMessage(CREATION_FAIL);
                     }
                 }
                 

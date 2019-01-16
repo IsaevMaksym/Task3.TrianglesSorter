@@ -7,7 +7,7 @@ using Controller;
 
 namespace ConsoleIO
 {
-    public class ConsOperations : IImputOutput
+    public class ConsOperations : IConsoleOperation
     {
         #region CONST
         public const int CLOSING_ITERATION_TIME = 800;
@@ -32,7 +32,7 @@ namespace ConsoleIO
             Console.ReadKey();
         }
 
-        public void CloseApp()
+        public void ShowClosingMessage()
         {
             Console.Write(CLOSING_MESSAGE);
 
@@ -133,7 +133,7 @@ namespace ConsoleIO
 
         }
 
-        public void ShowMsg(string s)
+        public void ShowMessage(string s)
         {
             Console.WriteLine(s);
         }

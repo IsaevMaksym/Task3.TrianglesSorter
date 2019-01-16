@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Controller
 {
-    public interface IImputOutput
+    public interface IConsoleOperation
     {
         void ShowRules(string s);
 
         bool DoesUserWantInputeTriangle();
 
-        void CloseApp();
+        void ShowClosingMessage();
                 
         void ShowTrianglesList(string[] s);
 
@@ -20,6 +20,6 @@ namespace Controller
 
         bool ISStartOver();
 
-        void ShowMsg(string error);
+        void ShowMessage(string error);
     }
 }

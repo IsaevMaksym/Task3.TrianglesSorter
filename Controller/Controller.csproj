@@ -47,9 +47,9 @@
     <Compile Include="TriangleController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BL\BL.csproj">
+    <ProjectReference Include="..\BL\TriangleLogic.csproj">
       <Project>{22dbff80-e650-4168-b9fb-76a392cd6e8f}</Project>
-      <Name>BL</Name>
+      <Name>TriangleLogic</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
