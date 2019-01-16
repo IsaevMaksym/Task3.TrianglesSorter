@@ -23,8 +23,7 @@ namespace TriangleLogic
         private double _sideThree;
 
         #endregion
-
-
+        
         public Triangle(string name, params double[] sides)
         {
             _sideOne = sides[0];

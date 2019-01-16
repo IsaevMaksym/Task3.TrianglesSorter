@@ -5,15 +5,20 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 using TriangleLogic;
+using System.Globalization;
 
 namespace Controller
 {
     class StringValidator
     {
+        #region Constants
+
         const string SEARCH_PATTERN = @"(\w+)\,(\d+\.?\d*)\,(\d+\.?\d*)\,(\d+\.?\d*)";         // it means [\w- any alp.-digit], [\. screening], [+ prev. is 1+ times], [\d any digit]
         const string EXCEPTION_MESSAGE = "Error. Wrong inserted message format";
 
-        public bool CheckInsertedString(out TrianglesList list, params string[] args) //gthtltkfnm kjubre
+        #endregion
+                
+        public bool CheckInsertedString(out TrianglesList list, params string[] args) 
         {
             string s = "";
             string[] arr = null;
@@ -87,8 +92,9 @@ namespace Controller
 
         private double GetDbl(string s)
         {
+            
             string sNew = s.Replace('.', ',');
-            double d = 0d;
+            double d = 0.0;
             double.TryParse(s, out d);
             return d;
         }
