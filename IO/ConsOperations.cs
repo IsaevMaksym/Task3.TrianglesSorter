@@ -9,7 +9,8 @@ namespace ConsoleIO
 {
     public class ConsOperations : IConsoleOperation
     {
-        #region CONST
+        #region Constants
+
         public const int CLOSING_ITERATION_TIME = 800;
         public const int CLOSING_ITERATIONS_COUNT = 3;
         public const string ENTER_TRIANGLE = "Would you like to input new Triangle?(y/yes?...) ";
@@ -20,7 +21,7 @@ namespace ConsoleIO
         public const string ENTER_SIDE = "Enter triangle {0} side length(e.g. 1,23): ";
         public const string GET_TRIANGLE_STRING = "Enter triangle in format[<triangle_name>,<triangle_side>,<triangle_side>,<triangle_side>]: ";
         public const string START_AGAIN = "Would you like to start again?(y/yes)  ";
-        public const string TRIANGLES_ARR = "============= Triangles list: ===============";
+        public const string TRIANGLES_HEADER = "============= Triangles list: ===============";
 
         #endregion
 
@@ -59,31 +60,7 @@ namespace ConsoleIO
 
         }
 
-        //public double[] GetTriangleSides()
-        //{
-        //    double[] sides = new double[3];
-
-        //    for (int i = 0; i < sides.Length; i++)
-        //    {
-        //        sides[i] = GetUserSide(i);
-        //    }
-
-        //    return sides;
-        //}
-
-        //private double GetUserSide(int sideCount)
-        //{
-        //    double value = 0.0;
-
-        //    do
-        //    {
-        //        Console.Clear();
-        //        Console.Write(ENTER_SIDE, sideCount+1);
-        //    } while (!double.TryParse(Console.ReadLine(), out value));
-
-        //    return value;
-        //}
-
+       
         public void ShowTrianglesList(string[] trianglesArr)
         {
 
@@ -91,7 +68,7 @@ namespace ConsoleIO
             {
 
                 Console.Clear();
-                Console.WriteLine(TRIANGLES_ARR);
+                Console.WriteLine(TRIANGLES_HEADER);
 
                 for (int i = 0; i < trianglesArr.Length; i++)
                 {

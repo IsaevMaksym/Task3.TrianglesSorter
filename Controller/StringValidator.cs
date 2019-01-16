@@ -11,11 +11,14 @@ namespace Controller
     class StringValidator
     {
         const string SEARCH_PATTERN = @"(\w+)\,(\d+\.?\d*)\,(\d+\.?\d*)\,(\d+\.?\d*)";         // it means [\w- any alp.-digit], [\. screening], [+ prev. is 1+ times], [\d any digit]
+        const string EXCEPTION_MESSAGE = "Error. Wrong inserted message format";
 
-
-        public TrianglesList CheckInsertedString(params string[] args)
+        public bool CheckInsertedString(out TrianglesList list, params string[] args) //gthtltkfnm kjubre
         {
             string s = "";
+            string[] arr = null;
+            bool isOk = false;
+            list = null;
 
             if (args.Length > 1)
             {
@@ -29,9 +32,17 @@ namespace Controller
                 s = args[0];
             }
 
-            return GetTrianglesList(GetTriangleFormatedArr(s));
+            arr = GetTriangleFormatedArr(s);
+
+            if (arr != null)
+            {
+                list = GetTrianglesList(arr);
+                isOk = true;
+            }
+
+            return isOk;
         }
-        
+
         private string[] GetTriangleFormatedArr(string s)
         {
             Regex regex = new Regex(SEARCH_PATTERN, RegexOptions.IgnoreCase);
@@ -57,11 +68,18 @@ namespace Controller
         {
             TrianglesList trianglesList = new TrianglesList();
 
-            for (int i = 0; i < arr.Length; i++)
+            if (arr == null)
             {
-                string[] name = arr[i].Split(',');
+                return trianglesList;
+            }
+            else
+            {
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    string[] name = arr[i].Split(',');
 
-                trianglesList.CheckTriangleString(name[0], GetDbl(name[1]), GetDbl(name[2]), GetDbl(name[3]));
+                    trianglesList.CheckTriangleString(name[0], GetDbl(name[1]), GetDbl(name[2]), GetDbl(name[3]));
+                }
             }
 
             return trianglesList;

@@ -12,10 +12,11 @@ namespace Controller
     public class TriangleController
     {
 
-        #region CONST
+        #region Constants
 
         public const string RULES = "Insert triangles information in format<TriangleName>,<TriangleSide>,<TriangleSide>,<TriangleSide>.";
         public const string CREATION_FAIL = "Can't create triangle";
+        public const string WRONG_FORMAT = "Wrong inserter string. (e.g. TriangleName,12.5,12,6)";
         public const string CREATION_SUCCESSFUL = "Triangle has been added";
         public const string CONVERTATION_FAIL = "Fail to convert inserted arguments";
 
@@ -57,25 +58,26 @@ namespace Controller
 
         private void CheckInsertedArgs(string[] args)
         {
-
+            TrianglesList tmp = null;
             if (args.Length == 0)
             {
                 _io.ShowRules(RULES);
             }
             else
             {
-                _triangles = _validator.CheckInsertedString(args);
+                // _triangles = _validator.CheckInsertedString(args);
 
-                if (_triangles.IsEmpty)
-                {
-                    _io.ShowMessage(CONVERTATION_FAIL);
-                    _io.ShowRules(RULES);
-                }
-                else
+                if (_validator.CheckInsertedString(out tmp, args))
                 {
                     _io.ShowTrianglesList(_triangles.GetTrinaglesList());
                 }
-               
+                else
+                {
+                    _io.ShowMessage(CONVERTATION_FAIL);
+                    _io.ShowRules(RULES);
+
+                }
+
             }
         }
 
@@ -83,23 +85,28 @@ namespace Controller
         {
             while (_io.DoesUserWantInputeTriangle())
             {
+                TrianglesList trianglesList = null;
 
-                TrianglesList trianglesList = _validator.CheckInsertedString(_io.GetNewTriangleString());
-
-                for (int i = 0; i < trianglesList.Triangles.Count; i++)
+                if (_validator.CheckInsertedString(out trianglesList, _io.GetNewTriangleString()))
                 {
-                    if (_triangles.AddTriangles(trianglesList.Triangles[i]))
+                    for (int i = 0; i < trianglesList.Triangles.Count; i++)
                     {
-                        _io.ShowMessage(CREATION_SUCCESSFUL);
-                        continue;
-                        
-                    }
-                    else
-                    {
-                        _io.ShowMessage(CREATION_FAIL);
+                        if (_triangles.AddTriangles(trianglesList.Triangles[i]))
+                        {
+                            _io.ShowMessage(CREATION_SUCCESSFUL);
+                            continue;
+
+                        }
+                        else
+                        {
+                            _io.ShowMessage(CREATION_FAIL);
+                        }
                     }
                 }
-                
+                else
+                {
+                    _io.ShowMessage(WRONG_FORMAT);
+                }
 
             }
         }

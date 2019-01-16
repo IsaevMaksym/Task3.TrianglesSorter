@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="StringValidator.cs" />
-    <Compile Include="IImputOutput.cs" />
+    <Compile Include="IConsoleOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TriangleController.cs" />
   </ItemGroup>
